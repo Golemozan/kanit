@@ -19,7 +19,8 @@ bakmamış. Sen "değişmemiş" diyorsun, ajan kodu gösterip ısrar ediyor.
      `curl`, tarayıcı, ekran görüntüsü).
 
 Ajan dürüstçe "doğrulanmadı" derse kapı engellemez. Kapı bir turda en fazla bir kez durdurur.
-Kendi hatasında (okunamayan girdi, eksik kayıt) asla engellemez.
+Kendi hatasında (okunamayan girdi, eksik kayıt) asla engellemez. Durdurduğunda arayüzde hata
+değil "Stop hook feedback" görünür.
 
 ```
 Sen:   Giriş butonunu düzelt.
@@ -53,7 +54,15 @@ claude plugin details kanit@skills-dir   # Skills (1) kanit · Hooks (1) Stop
 
 Node 18+ gerekir, bağımlılık yoktur.
 
-Yalnız bir projede istiyorsan projenin `.claude/skills/kanit` klasörüne klonla.
+Kurmadan tek oturumda denemek için:
+
+```bash
+git clone https://github.com/Golemozan/kanit /tmp/kanit
+claude --plugin-dir /tmp/kanit
+```
+
+Not: Projenin kendi `.claude/skills/` klasörüne klonlamak eklentiyi (dolayısıyla kapıyı) yüklemiyor;
+kullanıcı klasörüne (`~/.claude/skills/`) kur.
 
 ## Ayarlar
 

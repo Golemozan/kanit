@@ -23,14 +23,14 @@ function transcript(lines) {
 const user = (text) => ({ type: "user", message: { content: text } });
 const tool = (id, name, input) => ({ type: "assistant", message: { content: [{ type: "tool_use", id, name, input }] } });
 
-test("kontrolsüz 'bitti' engellenir, JSON block döner", () => {
+test("kontrolsüz 'bitti' durdurulur, hata göstermeyen additionalContext döner", () => {
   const t = transcript([user("butonu düzelt"), tool("a", "Edit", { file_path: "src/Button.tsx" })]);
   const r = run({ transcript_path: t, last_assistant_message: "Butonu düzelttim.", stop_hook_active: false });
   assert.equal(r.code, 0);
-  const out = JSON.parse(r.out);
-  assert.equal(out.decision, "block");
-  assert.match(out.reason, /src\/Button\.tsx/);
-  assert.match(out.reason, /doğrulanmadı/);
+  const out = JSON.parse(r.out).hookSpecificOutput;
+  assert.equal(out.hookEventName, "Stop");
+  assert.match(out.additionalContext, /src\/Button\.tsx/);
+  assert.match(out.additionalContext, /doğrulanmadı/);
 });
 
 test("kontrol çalıştıysa sessiz geçer", () => {
@@ -44,7 +44,7 @@ test("last_assistant_message yoksa transcript'teki son metne düşer", () => {
     tool("a", "Edit", { file_path: "a.js" }),
     { type: "assistant", message: { content: [{ type: "text", text: "Tamamlandı." }] } },
   ]);
-  assert.equal(JSON.parse(run({ transcript_path: t }).out).decision, "block");
+  assert.match(JSON.parse(run({ transcript_path: t }).out).hookSpecificOutput.additionalContext, /kontrol/);
 });
 
 test("bozuk girdi, eksik transcript, kapalı anahtar: asla engellemez", () => {

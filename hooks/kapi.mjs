@@ -42,7 +42,11 @@ function main() {
   const message = input.last_assistant_message ?? lastText(entries);
   const result = decide({ message, tools: turnTools(entries), stopHookActive: !!input.stop_hook_active });
   if (result.block) {
-    process.stdout.write(JSON.stringify({ decision: "block", reason: reason(result.files) }));
+    // additionalContext ajanı devam ettirir ama arayüzde "hook error" göstermez
+    // (decision: "block" bunu hata gibi gösteriyor; kullanıcı eklentiyi bozuk sanıyor).
+    process.stdout.write(
+      JSON.stringify({ hookSpecificOutput: { hookEventName: "Stop", additionalContext: reason(result.files) } })
+    );
   }
 }
 
