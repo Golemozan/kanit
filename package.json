@@ -1,0 +1,12 @@
+{
+  "name": "kanit",
+  "version": "1.0.0",
+  "description": "Ajan, son değişiklikten sonra bir kontrol çalıştırmadan \"bitti\" diyemez. Claude Code skill + Stop kapısı.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node --test"
+  }
+}

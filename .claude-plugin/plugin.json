@@ -1,0 +1,14 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "kanit",
+  "version": "1.0.0",
+  "description": "Ajan, son değişiklikten sonra bir kontrol çalıştırmadan \"bitti\" diyemez. Skill + Stop kapısı.",
+  "author": {
+    "name": "Ozan"
+  },
+  "homepage": "https://github.com/Golemozan/kanit",
+  "license": "MIT",
+  "skills": [
+    "./"
+  ]
+}
