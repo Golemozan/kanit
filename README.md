@@ -7,7 +7,7 @@ bakmamış. Sen "değişmemiş" diyorsun, ajan kodu gösterip ısrar ediyor.
 
 `kanıt` iki parçadan oluşur:
 
-- **Skill (`SKILL.md`):** Ajana bitirmeden önce ne yapacağını söyler. Sonucu kullanıcının göreceği
+- **Skill (`skills/kanit/SKILL.md`):** Ajana bitirmeden önce ne yapacağını söyler. Sonucu kullanıcının göreceği
   yerde kontrol et, cevabın sonuna `İstenen / Kontrol / Sonuç` yaz, kontrol edemiyorsan
   "doğrulanmadı" de.
 - **Kapı (`hooks/kapi.mjs`):** Talimat ajanın insafına kalmasın diye. Ajan durmak istediğinde
@@ -45,8 +45,13 @@ Windows PowerShell:
 git clone https://github.com/Golemozan/kanit "$HOME\.claude\skills\kanit"
 ```
 
-Sonraki oturumda kendiliğinden yüklenir (açık oturumda `/reload-plugins`). Node 18+ gerekir,
-bağımlılık yoktur.
+Sonraki oturumda kendiliğinden yüklenir (açık oturumda `/reload-plugins`). Yüklendiğini görmek için:
+
+```bash
+claude plugin details kanit@skills-dir   # Skills (1) kanit · Hooks (1) Stop
+```
+
+Node 18+ gerekir, bağımlılık yoktur.
 
 Yalnız bir projede istiyorsan projenin `.claude/skills/kanit` klasörüne klonla.
 
